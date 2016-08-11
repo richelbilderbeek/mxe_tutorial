@@ -1,0 +1,2471 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{tikz}
+\usepackage{tkz-graph}
+\usepackage{pgf}
+\usetikzlibrary{arrows,automata}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+MXE tutorial
+\end_layout
+
+\begin_layout Author
+Richèl Bilderbeek
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/CppLogo.jpg
+	lyxscale 50
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+This is an MXE tutorial, version 0.1.
+\end_layout
+
+\begin_layout Subsection
+License
+\end_layout
+
+\begin_layout Standard
+This tutorial is licensed under Creative Commons license 4.0.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/CC-BY-SA_icon.svg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creative Commons license 4.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All C++ code is licensed under GPL 3.0.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/gplv3.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+GPL 3.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Crosscompiling to Windows
+\end_layout
+
+\begin_layout Paragraph
+The benefits of developing code under GNU/Linux
+\end_layout
+
+\begin_layout Standard
+Developing C++ code under GNU/Linux has advantages: one can easily install
+ and use FOSS software and libraries from the command-line.
+ When using an online git repository like GitHub, it is easy to add continuous
+ integration, for example Travis CI.
+\end_layout
+
+\begin_layout Paragraph
+The customer needs
+\end_layout
+
+\begin_layout Standard
+Customers generally deploy to the Microsoft Windows operating system, as
+ it has the largest market share.
+ This may force a developer into buying a Microsoft computer just for deployment.
+\end_layout
+
+\begin_layout Paragraph
+The solution
+\end_layout
+
+\begin_layout Standard
+MXE, shorthand for 'M cross Environment', is a cross-compiling environment
+ that allows compiling C++ code to a statically linked Windows executable.
+ It can be used from the command line.
+\end_layout
+
+\begin_layout Subsection
+Tutorial style
+\end_layout
+
+\begin_layout Standard
+This tutorial is aimed at the beginner.
+\end_layout
+
+\begin_layout Paragraph
+Introduction of new terms and tools
+\end_layout
+
+\begin_layout Standard
+All terms and tools are introduced shortly once, by a 'What is' paragraph.
+ This allows a beginner to have a general idea about what the term/tool
+ is, without going in-depth.
+ Also, this allows for those more knowledgeable to skim the paragraph.
+\end_layout
+
+\begin_layout Paragraph
+Repetitiveness
+\end_layout
+
+\begin_layout Standard
+To allow skimming, most chapters follow the same structure.
+ Sometimes the exact same wording is used.
+ This is counteracted by referring to earlier chapters.
+\end_layout
+
+\begin_layout Paragraph
+Ties to the Travis C++ tutorial
+\end_layout
+
+\begin_layout Standard
+This tutorial follows the same structure as the Travis C++ Tutorial, which
+ is available online at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/richelbilderbeek/travis_cpp_tutorial
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+This tutorial
+\end_layout
+
+\begin_layout Standard
+This tutorial is available online at 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/richelbilderbeek/mxe_tutorial
+\end_layout
+
+\end_inset
+
+.
+ Of course, it is checked by Travis that all the setups described work
+\end_layout
+
+\begin_layout Subsection
+Acknowledgements
+\end_layout
+
+\begin_layout Standard
+These people contributed to this tutorial:
+\end_layout
+
+\begin_layout Itemize
+[None yet]
+\end_layout
+
+\begin_layout Subsection
+Collaboration
+\end_layout
+
+\begin_layout Standard
+I welcome collaboration for this tutorial, especially in getting the scripts
+ as clean as possible.
+ If you want to help scraping off some lines, I will be happy to make you
+ a collaborator of some GitHubs.
+ 
+\end_layout
+
+\begin_layout Subsection
+Feedback
+\end_layout
+
+\begin_layout Standard
+This tutorial is not intended to be perfect yet.
+ For that, I need help and feedback from the community.
+ All referenced feedback is welcome, as well as any constructive feedback.
+ 
+\end_layout
+
+\begin_layout Section
+Setting up the basic build
+\end_layout
+
+\begin_layout Standard
+The basic build is more than just a collection of files.
+ It needs to be set up.
+ This chapter shows how to do so.
+\end_layout
+
+\begin_layout Itemize
+Create a GitHub online
+\end_layout
+
+\begin_layout Itemize
+Bring the git repository to your local computer
+\end_layout
+
+\begin_layout Itemize
+Create a Qt Creator project
+\end_layout
+
+\begin_layout Itemize
+Create the build bash scripts
+\end_layout
+
+\begin_layout Subsection
+Create a GitHub online
+\end_layout
+
+\begin_layout Paragraph
+What is GitHub?
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GitHub
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GitHub is a site that creates websites around projects.
+ It is said to host these projects.
+ Each project contains at least one, but usually multiple files.
+ These files can be put on your own hard disc, USB stick, or other storage
+ devices.
+ They could also be put at a central place, which is called a repository,
+ so potentially others can also access these.
+ GitHub is such a file repository.
+ GitHub also keeps track of the history of the project, which is also called
+ version control.
+ GitHub uses git as a version control software.
+ In short: GitHub hosts git repositories.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-homepage"
+
+\end_inset
+
+ shows the GitHub homepage, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GitHubHomepage.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The GitHub homepage, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GitHub-homepage"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Register
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GitHub, registration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Before you can create a new repository, you must register.
+ Registration is free for open source projects, with an unlimited
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+the maximum I have observed is a person that has 350 repositories
+\end_layout
+
+\end_inset
+
+ amount of public repositories.
+\end_layout
+
+\begin_layout Standard
+From the GitHub homepage, 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com
+\end_layout
+
+\end_inset
+
+ (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-homepage"
+
+\end_inset
+
+), click the top right button labeled 'Sign up'.
+ This will take you to the 'Join GitHub' page (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-join"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GitHubJoin.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The join GitHub page
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GitHub-join"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Filling this in should be as easy.
+ After filling this in, you are taken to your GitHub profile page (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-profile"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GitHubProfile.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+A GitHub profile page
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GitHub-profile"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Creating a repository
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GitHub, creating a repository
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From your GitHub profile page (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-profile"
+
+\end_inset
+
+), click on the plus ('Create new ...') at the top right, then click 'New repositor
+y' (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-create-repository"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GitHubCreateRepository.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Create a GitHub repository
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GitHub-create-repository"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Do check 'Initialize this repository with a README', add a .gitignore with
+ 'C++' and add a licence like 'GPL 3.0'.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/GitHubCreatedRepository.png
+	lyxscale 50
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Created a GitHub repository
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GitHub-created-repository"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You have now created your own online version controlled repository (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GitHub-created-repository"
+
+\end_inset
+
+)!
+\end_layout
+
+\begin_layout Subsection
+Bring the git repository to your local computer
+\end_layout
+
+\begin_layout Paragraph
+What is git?
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+git
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+git is a version control system.
+ It allows you keep a history of a file its content in time.
+ It is the more convenient alternative of making copies before each modification.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm, semithick
+]   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{every state}=[]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (A)              {main.cpp};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (B) [right of=A] {main.cpp};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (C) [right of=B] {main.cpp};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+path (A) edge [bend left] node {revision 1} (B)
+\end_layout
+
+\begin_layout Plain Layout
+
+      (B) edge [bend left] node {revision 2} (C)
+\end_layout
+
+\begin_layout Plain Layout
+
+  ; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Multiple versions of main.cpp.
+ git allows to always go back to each version of main
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Git-Logo-2Color.png
+	lyxscale 10
+	width 25text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+git logo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Using git
+\end_layout
+
+\begin_layout Standard
+Go to the terminal and type the following line to download your repository:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+git clone https://github.com/[your_name]/[your_repository]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Replace '[your_name]' and '[your_repository]' by your GitHub username and
+ the repository name.
+ A new folder called '[your_repository]' is created where you should work
+ in.
+ For example, to download this tutorial its repository to a folder called
+ 'travis_cpp_tutorial':
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+git clone https://github.com/richelbilderbeek/travis_cpp_tutorial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Create a Qt Creator project
+\end_layout
+
+\begin_layout Paragraph
+What is Qt Creator?
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Qt Creator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Qt Creator is a C++ IDE
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Qt_Creator_logo.png
+	width 25text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Qt creator logo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Creating a new project
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Qt Creator, create new project
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Project will have some defaults: GCC.
+\end_layout
+
+\begin_layout Paragraph
+What is a Qt Creator project file?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-a-Qt-Creator-project-file?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Qt Creator project file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A Qt Creator project file contains the information how a Qt Creator project
+ must be built.
+ It commonly has the .pro
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+.pro
+\end_layout
+
+\end_inset
+
+ file extension.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Two big circles: 'C++ Project' and 'executable'
+\end_layout
+
+\begin_layout Plain Layout
+Within first circle: two smaller circles: .cpp and .h
+\end_layout
+
+\begin_layout Plain Layout
+Arrow from first to second circle with text 'compiler, linker'
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Overview of converting a C++ project to an executable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm, semithick
+]   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+tikzstyle{every state}=[]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (A)              {a.h};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (B) [right of=A] {a.cpp};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (C) [below of=A] {b.h};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (D) [below of=B] {b.cpp};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (E) [right of=B] {a.o};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (F) [below of=E] {b.o};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[state] (G) [right of=E] {executable};   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+path 
+\end_layout
+
+\begin_layout Plain Layout
+
+    (A) edge [dotted] node {
+\backslash
+#include} (B)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (A) edge [dotted] node {} (D)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (B) edge node {compiler} (E)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (C) edge[dotted] node {
+\backslash
+#include} (D)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (C) edge[dotted] node {} (B)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (D) edge node {compiler} (F)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (E) edge node {linker} (G)
+\end_layout
+
+\begin_layout Plain Layout
+
+    (F) edge [bend left] node {linker} (G)
+\end_layout
+
+\begin_layout Plain Layout
+
+  ; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+From files to executable.
+ The compiler converts source (.cpp) files to object (.o) files.
+ The linker uses these object files to create one executable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+What is qmake?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-qmake?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+qmake
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+qmake is a tool to create makefiles.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+Two upper circles: '.pro' -> 'Makefile'
+\end_layout
+
+\begin_layout Plain Layout
+Two lower circles: '.cpp' and '.h', both -> to .pro, both dotted line to 'Makefile'
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+What qmake does
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+What is make?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-make?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+make
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+make is a tool that reads a makefile and creates an executable
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+'Makefile' --[make]> 'executable'
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+What make does
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+What is GCC?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-GCC?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GCC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GCC, the GNU Compiler Collection, is a collection of compilers, among other,
+ the C++ compiler called g++.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/GNU_Compiler_Collection_logo.png
+	width 25text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+GCC logo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+What is g++?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-g++?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+g++
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+g++ is the C++ compiler that is part of the GCC.
+\end_layout
+
+\begin_layout Paragraph
+What is C++98?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-C++98?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+C++98
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+C++98 is the first C++ standard in 1998.
+\end_layout
+
+\begin_layout Paragraph
+What is the STL?
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+STL
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The STL, the Standard Template Library, is the C++ standard library.
+\end_layout
+
+\begin_layout Subsection
+Create the build bash scripts
+\end_layout
+
+\begin_layout Paragraph
+What is bash?
+\begin_inset CommandInset label
+LatexCommand label
+name "par:What-is-bash?"
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+bash
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+'bash' is a shell scripting language
+\end_layout
+
+\begin_layout Section
+The basic build
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:travis_qmake_gcc_cpp98"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This basic build consists of a 'Hello World' program, written in C++98.
+ It uses the Qt Creator default settings: Qt Creator will create a Qt Creator
+ project file, which in turn will use GCC.
+\end_layout
+
+\begin_layout Itemize
+What is a C++98 'Hello world' program? See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:A-C++98-Hello-World-Program"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The Travis build file.
+ See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:travis_qmake_gcc_cpp98-travis.yml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The build script.
+ See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:travis_qmake_gcc_cpp98-build.sh"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The Qt Creator project file.
+ See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:travis_qmake_gcc_cpp98.pro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The source file.
+ See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:travis_qmake_gcc_cpp98-main.cpp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+What is a C++98 'Hello world' program?
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:A-C++98-Hello-World-Program"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A 'Hello World' program shows the text 'Hello world' on the screen.
+ It is a minimal program.
+ Its purpose is to show that all machinery is in place to create an executable
+ from C++ source code.
+ 
+\end_layout
+
+\begin_layout Standard
+A listing of a 'Hello world' program is shown at algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:travis_qmake_gcc_cpp98-main.cpp"
+
+\end_inset
+
+.
+ Here I go through each line:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <iostream>
+\end_layout
+
+\end_inset
+
+Read a header file called 'iostream'
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int main() { /* your code */ }
+\end_layout
+
+\end_inset
+
+The 'main' function is the starting point of a C++ program.
+ Its body is between curly braces
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+std::cout << "Hello world
+\backslash
+n";
+\end_layout
+
+\end_inset
+
+Show the text 'Hello world' on screen and go to the next line
+\end_layout
+
+\begin_layout Subsection
+The Travis file
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:travis_qmake_gcc_cpp98-travis.yml"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Travis CI is set up by a file called '.travis.yml'.
+ The filename starts with a dot, which means it is a hidden file on UNIX
+ systems.
+ The extension 'yml'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+yml
+\end_layout
+
+\end_inset
+
+ is an abbreviation of 'Yet another Markup Language'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Yet Another Markup Language
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The '.travis.yml' file to build and run a 'Hello world' program looks like
+ this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "../travis_qmake_gcc_cpp98/.travis.yml"
+lstparams "breaklines=true,language={C++}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+.travis.yml
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This .travis.yml file has the following elements:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+language: cpp
+\end_layout
+
+\end_inset
+
+The main programming language of this project is C++
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+compiler: gcc
+\end_layout
+
+\end_inset
+
+The C++ code will be compiled by the GCC (What is GCC? See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:What-is-GCC?"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+script: 
+\end_layout
+
+\begin_layout Plain Layout
+
+  - ./build.sh
+\end_layout
+
+\begin_layout Plain Layout
+
+  - ./travis_qmake_gcc_cpp98
+\end_layout
+
+\end_inset
+
+The script that Travis will run.
+ In this case, it will execute the 'build.sh' bash script, that should build
+ the excutable.
+ Then, the (hopefully) created executable called 'travis_qmake_gcc_cpp98'
+ is run
+\end_layout
+
+\begin_layout Standard
+This build script can fail in in two places:
+\end_layout
+
+\begin_layout Enumerate
+The bash script can fail, which is discussed in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:travis_qmake_gcc_cpp98-build.sh"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The executable can return an error code.
+ A 'Hello World' program is intended to return the error code for 'everything
+ went fine'.
+ Other programs in this tutorial return error codes depending on test cases.
+ It may also be that dynamically linked libraries cannot be found, which
+ crashes the program at startup
+\end_layout
+
+\begin_layout Subsection
+The build bash script
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:travis_qmake_gcc_cpp98-build.sh"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The bash build script used to build the executable of a 'Hello world' program
+ looks like this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../travis_qmake_gcc_cpp98/build.sh"
+lstparams "breaklines=true,language={bash}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+build.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This build script calls: 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+#!/bin/bash
+\end_layout
+
+\end_inset
+
+This line indicates the script is a bash script.
+ The '#!', (also called the 'shebang'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+shebang
+\end_layout
+
+\end_inset
+
+) is a directive to use the executable at the absolute path following it.
+ In this script, 'bash' is used, which resides in the '/bin' folder
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+qmake
+\end_layout
+
+\end_inset
+
+'qmake'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+qmake
+\end_layout
+
+\end_inset
+
+ is called to create a makefile
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Makefile
+\end_layout
+
+\end_inset
+
+ (What is 'qmake'? See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:What-is-qmake?"
+
+\end_inset
+
+) from the only Qt Creator project file.
+ In this build, the name of this project file is ommitted, as there is only
+ one, but there are chapters in this tutorial where the project name is
+ mentioned explicitly.
+ Note that currently, qmake uses Qt4 (What is Qt4? see chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:What-is-Qt4?"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+make
+\end_layout
+
+\end_inset
+
+'make'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+make
+\end_layout
+
+\end_inset
+
+ is called to compile the makefile (What is 'make'? See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:What-is-make?"
+
+\end_inset
+
+).
+ In this build, 'make' is called without any arguments, but there are chapters
+ in this tutorial where 'make' is called with arguments
+\end_layout
+
+\begin_layout Standard
+This bash script can fail in two places: 
+\end_layout
+
+\begin_layout Enumerate
+If the Qt Creator project file is incorrectly formed, 'qmake' will fail,
+ and as it cannot create a valid makefile
+\end_layout
+
+\begin_layout Enumerate
+If the Qt Creator project file is incomplete (for example: by omitting libraries
+), 'make' will fail.
+ 'qmake' has created a makefile, after which 'make' finds out that it cannot
+ create an executable with that makefile
+\end_layout
+
+\begin_layout Subsection
+Qt Creator project file
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:travis_qmake_gcc_cpp98.pro"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following Qt Creator project file is used in this 'Hello world' build:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand verbatiminput
+filename "../travis_qmake_gcc_cpp98/travis_qmake_gcc_cpp98.pro"
+lstparams "breaklines=true,language={C++}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+travis_qmake_gcc_cpp98.pro
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:travis_qmake_gcc_cpp98.pro"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This Qt Creator project file has the following elements:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+SOURCES += main.cpp
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+SOURCES
+\end_layout
+
+\end_inset
+
+The file 'main.cpp' is a source file, that has to be compiled
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+QMAKE_CXXFLAGS += -Wall -Wextra -Weffc++ -Werror
+\end_layout
+
+\end_inset
+
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+QMAKE_CXXFLAGS
+\end_layout
+
+\end_inset
+
+The project is checked with all warnings ('-Wall'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+-Wall
+\end_layout
+
+\end_inset
+
+), with extra warnings ('-Wextra'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+-Wextra
+\end_layout
+
+\end_inset
+
+) and with the Effective C++ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "meyers2005effective"
+
+\end_inset
+
+ advices ('-Weffc++'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+-Weffc++
+\end_layout
+
+\end_inset
+
+) enforced.
+ A warning is treated as an error ('-Werror'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+-Werror
+\end_layout
+
+\end_inset
+
+).
+ This forces you (and your collaborators) to write tidy code.
+\end_layout
+
+\begin_layout Subsection
+C++ source file
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:travis_qmake_gcc_cpp98-main.cpp"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The single C++ source file used in this 'Hello world' build is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../travis_qmake_gcc_cpp98/main.cpp"
+lstparams "breaklines=true,language={C++}"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+main.cpp
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:travis_qmake_gcc_cpp98-main.cpp"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All the code does is display the text 'Hello world'
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Hello world
+\end_layout
+
+\end_inset
+
+, which is a traditional start for many programming languages.
+ See 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:A-C++98-Hello-World-Program"
+
+\end_inset
+
+ for a line-by-line explanation.
+ The code is written in C++98 (What is C++98? See chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:What-is-C++98?"
+
+\end_inset
+
+).
+ It does not use features from the newer C++ standards, but can be compiled
+ under these newer standards.
+ It will not compile under plain C.
+\end_layout
+
+\begin_layout Section
+Troubleshooting
+\end_layout
+
+\begin_layout Subsection
+sudo apt-get install gcov-5 failed and exited with 100 during .
+\end_layout
+
+\begin_layout Standard
+Or in full:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+The command "sudo -E apt-get -yq --no-install-suggests --no-install-recommends
+ --force-yes install gcov-5" failed and exited with 100 during .
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It means Travis-CI cannot find the package 'gcov-5' in the 'addons' section.
+\end_layout
+
+\begin_layout Standard
+Comment out the addons section and add this to the Travis script:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+apt-cache search "gcov" | egrep "^gcov"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One can then observe that 'gcov' is absent.
+ It is part of g++.
+\end_layout
+
+\begin_layout Subsection
+Cannot find the correct version of a package
+\end_layout
+
+\begin_layout Standard
+Comment out the addons section and add this to the Travis script:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ - apt-cache search "g++" | egrep "^gcc"
+\end_layout
+
+\begin_layout Plain Layout
+
+ - apt-cache search "g++" | egrep "^g
+\backslash
++
+\backslash
++"
+\end_layout
+
+\begin_layout Plain Layout
+
+ - apt-cache search "gcov" | egrep "^gcov"
+\end_layout
+
+\begin_layout Plain Layout
+
+ - apt-cache search "libboost"| egrep "^libboost"
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This will cause Travis to search the aptitude packages.
+\end_layout
+
+\begin_layout Subsection
+fatal error: Rcpp.h: No such file or directory
+\end_layout
+
+\begin_layout Standard
+Add these line to the .travis.yml file to find Rcpp.h:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+after_failure:
+\end_layout
+
+\begin_layout Plain Layout
+
+ # fatal error: Rcpp.h: No such file or directory
+\end_layout
+
+\begin_layout Plain Layout
+
+ - find / -name 'Rcpp.h'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can then add the folder found to the INCLUDEPATHS of the Qt Create project
+ file.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "travis_cpp_tutorial"
+options "bibtotoc,plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
