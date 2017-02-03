@@ -99,6 +99,9 @@ The cross compiling script looks like this:
 #!/bin/bash
 cd travis_qmake_gcc_cpp98
 
+# Remove all warnings
+sed 's/^QMAKE_CXXFLAGS/# QMAKE_CXXFLAGS/' travis_qmake_gcc_cpp98.pro
+
 i686-w64-mingw32.static-qmake-qt4
 
 make
@@ -116,7 +119,10 @@ It has the following elements:
 
  * `#!/bin/bash`: the shebang, indicating this is a bash script
  * `cd travis_qmake_gcc_cpp98`: go into the folder `travis_qmake_gcc_cpp98`
- * `i686-w64-mingw32.static-qmake-qt4`: create a makefile for the only `.pro` file in that folder using `Qt4`'s `qmake`
+ * `# Remove all warnings`: a comment. All comments start with a pound (`#`)
+ * `sed 's/^QMAKE_CXXFLAGS/# QMAKE_CXXFLAGS/' travis_qmake_gcc_cpp98.pro`: comment out all lines
+   that start with `QMAKE_CXXFLAGS`. This to remove all the warnings
+ * `i686-w64-mingw32.static-qmake-qt5`: create a makefile for the only `.pro` file in that folder using `Qt5`'s `qmake`
  * `make`: build the executable
  * `cd ..`: go up one folder
 
@@ -136,7 +142,5 @@ a Windows executable.
 The project file used for this cross-compile is rather strict: all warnings are turned on,
 and warnings are escalated to errors. This may be inappropriate for cross-compiling: 
 your code *has* been tested on your favorite platform (if not, you should), 
-and you may choose to ignore warnings. Especially `-Weffc++` can be a source of warnings 
-inappropriate for crosscompiling.
-
+and you may choose to ignore warnings. This script comments out all such warnings.
 

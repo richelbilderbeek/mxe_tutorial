@@ -2,17 +2,13 @@
 cd travis_qmake_gcc_cpp11
 
 # Remove all warnings
-sed -i 's/^QMAKE_CXXFLAGS = -W/# QMAKE_CXXFLAGS = -W/' travis_qmake_gcc_cpp11.pro
+sed -i 's/^QMAKE_CXXFLAGS += -W/# QMAKE_CXXFLAGS += -W/' travis_qmake_gcc_cpp11.pro
 # Remove use of compiler and linker 
 sed -i 's/^QMAKE_CXX /# QMAKE_CXX /' travis_qmake_gcc_cpp11.pro
 sed -i 's/^QMAKE_LINK/# QMAKE_LINK/' travis_qmake_gcc_cpp11.pro
 sed -i 's/^QMAKE_CC/# QMAKE_CC/' travis_qmake_gcc_cpp11.pro
-# Do add to use C++11
 
-i686-w64-mingw32.static-qmake-qt4 travis_qmake_gcc_cpp11.pro
-
-# Will give a lot of errors
-i686-w64-mingw32.static-qmake-qt5 travis_qmake_gcc_cpp11_mxe.pro
+i686-w64-mingw32.static-qmake-qt5
 
 make
 
