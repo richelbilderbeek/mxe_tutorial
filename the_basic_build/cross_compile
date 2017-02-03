@@ -1,10 +1,12 @@
 #!/bin/bash
 cd travis_qmake_gcc_cpp98
 
-i686-w64-mingw32.static-qmake-qt4
+# Remove all warnings
+sed 's/^QMAKE_CXXFLAGS/# QMAKE_CXXFLAGS/' travis_qmake_gcc_cpp98.pro
 
-# Will give a lot of errors
-# i686-w64-mingw32.static-qmake-qt5
+# Can pick either
+# i686-w64-mingw32.static-qmake-qt4
+i686-w64-mingw32.static-qmake-qt5
 
 make
 
