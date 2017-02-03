@@ -9,6 +9,9 @@ It uses the Qt Creator default settings: Qt Creator will create a Qt Creator pro
  * The Qt Creator project file
  * The source file
 
+This basic build uses the code of
+[https://github.com/richelbilderbeek/travis_qmake_gcc_cpp98](https://github.com/richelbilderbeek/travis_qmake_gcc_cpp98).
+
 ## What is a C++98 'Hello world' program?
 
 A 'Hello World' program shows the text 'Hello world' on the screen. 
