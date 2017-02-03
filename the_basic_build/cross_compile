@@ -1,0 +1,20 @@
+#!/bin/bash
+cd travis_qmake_gcc_cpp98
+
+i686-w64-mingw32.static-qmake-qt4
+
+# Will give a lot of errors
+# i686-w64-mingw32.static-qmake-qt5
+
+make
+
+cd ..
+
+if [ -f ./travis_qmake_gcc_cpp98/release/travis_qmake_gcc_cpp98.exe ]
+then
+  echo "OK: Windows executable has been created"
+else
+  echo "Error: Windows executable has not been created"
+
+fi
+
