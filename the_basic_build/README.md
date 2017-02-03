@@ -88,6 +88,40 @@ This Qt Creator project file has the following elements:
     advices (`-Weffc++`) enforced. A warning is treated as an error (`-Werror`). 
     This forces you (and your collaborators) to write tidy code.
 
+## Cross compiling
 
+The cross compiling script looks like this:
 
+```
+#!/bin/bash
+cd travis_qmake_gcc_cpp98
 
+i686-w64-mingw32.static-qmake-qt4
+
+make
+
+cd ..
+
+if [ ! -f ./travis_qmake_gcc_cpp98/release/travis_qmake_gcc_cpp98.exe ]
+then
+  echo "Error: Windows executable has not been created"
+  exit 1
+fi
+```
+
+It has the following elements:
+
+ * `#!/bin/bash`: the shebang, indicating this is a bash script
+ * `cd travis_qmake_gcc_cpp98`: go into the folder `travis_qmake_gcc_cpp98`
+ * `i686-w64-mingw32.static-qmake-qt4`: create a makefile for the only `.pro` file in that folder using `Qt4`'s `qmake`
+ * `make`: build the executable
+ * `cd ..`: go up one folder
+
+```
+if [ ! -f ./travis_qmake_gcc_cpp98/release/travis_qmake_gcc_cpp98.exe ]
+then
+  echo "Error: Windows executable has not been created"
+fi
+```
+
+ * if the executable file does not exist, then show an error message and exit the script with an error code

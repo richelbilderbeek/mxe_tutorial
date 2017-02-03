@@ -10,11 +10,9 @@ make
 
 cd ..
 
-if [ -f ./travis_qmake_gcc_cpp98/release/travis_qmake_gcc_cpp98.exe ]
+if [ ! -f ./travis_qmake_gcc_cpp98/release/travis_qmake_gcc_cpp98.exe ]
 then
-  echo "OK: Windows executable has been created"
-else
   echo "Error: Windows executable has not been created"
-
+  exit 1
 fi
 
