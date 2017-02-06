@@ -1,0 +1,22 @@
+#!/bin/bash
+cd travis_qmake_gcc_cpp14_boost
+
+# Remove all warnings
+sed -i 's/^QMAKE_CXXFLAGS += -W/# QMAKE_CXXFLAGS += -W/' travis_qmake_gcc_cpp14_boost.pro
+# Remove use of compiler and linker 
+sed -i 's/^QMAKE_CXX /# QMAKE_CXX /' travis_qmake_gcc_cpp14_boost.pro
+sed -i 's/^QMAKE_LINK/# QMAKE_LINK/' travis_qmake_gcc_cpp14_boost.pro
+sed -i 's/^QMAKE_CC/# QMAKE_CC/' travis_qmake_gcc_cpp14_boost.pro
+
+i686-w64-mingw32.static-qmake-qt5
+
+make
+
+cd ..
+
+if [ ! -f ./travis_qmake_gcc_cpp14_boost/release/travis_qmake_gcc_cpp14_boost.exe ]
+then
+  echo "Error: Windows executable has not been created"
+  exit 1
+fi
+
