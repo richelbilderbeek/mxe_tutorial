@@ -1,0 +1,2 @@
+#!/bin/bash
+git clone https://github.com/richelbilderbeek/travis_qmake_gcc_cpp14_boost_qt5.git

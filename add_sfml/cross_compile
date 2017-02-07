@@ -1,0 +1,49 @@
+#!/bin/bash
+folder_name=travis_qmake_gcc_cpp14_boost_qt5_sfml
+pro_name=$folder_name".pro"
+exe_name=$folder_name".exe"
+
+cd $folder_name
+
+# Remove all warnings
+sed -i 's/^QMAKE_CXXFLAGS += -W/# QMAKE_CXXFLAGS += -W/' $pro_name
+# Remove use of compiler and linker 
+sed -i 's/^QMAKE_CXX /# QMAKE_CXX /' $pro_name
+sed -i 's/^QMAKE_LINK/# QMAKE_LINK/' $pro_name
+sed -i 's/^QMAKE_CC/# QMAKE_CC/' $pro_name
+
+# Let the SFML arhcives be found by MXE
+# This folder, which contains Qt5, is found: /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# This folder, which contains SFML, is not found: /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-audio-s.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-main.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-system-s.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-graphics-s.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-network-s.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-window-s.a /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-audio-s.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-main.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-system-s.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-graphics-s.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-network-s.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-window-s.a .
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-audio-s.a release
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-main.a release
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-system-s.a release
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-graphics-s.a release
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-network-s.a release
+# ln -s /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/lib/libsfml-window-s.a release
+
+
+i686-w64-mingw32.static-qmake-qt5
+
+make
+
+cd ..
+
+if [ ! -f ./$folder_name/release/$exe_name ]
+then
+  echo "Error: Windows executable has not been created"
+  exit 1
+fi
+
