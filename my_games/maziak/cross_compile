@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prerequisites
-./clone
+git clone https://github.com/richelbilderbeek/Maziak.git
 cd Maziak; ./download_other_githubs; cd ..
 
 folder_name=Maziak
