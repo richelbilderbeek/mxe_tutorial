@@ -63,7 +63,7 @@ git clone https://github.com/[your_name]/[your_repository]
 Replace '[your_name]' and '[your_repository]' by your GitHub username and the repository name. A new folder called '[your_repository]' is created where you should work in. For example, to download this tutorial its repository to a folder called 'travis_cpp_tutorial':
 
 ```
-git clone https://github.com/richelbilderbeek/travis_cpp_tutorial
+git clone https://github.com/richelbilderbeek/mxe_tutorial
 ```
 
 ## Create a Qt Creator project
